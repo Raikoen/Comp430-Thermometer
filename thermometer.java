@@ -6,18 +6,20 @@ import java.text.DecimalFormat;
 import java.math.RoundingMode;
 
 
+
 //Has THREE classes
 public class ThermometerSystem
 {
 	boolean isOn=false;
-	float avgTemp;
+	double avgTemp;
 	float setTemp;
 	int batteryStat;
-	char tempUnits;
+	char tempUnits='C';
 	float timer;
-
+	
 	public static void main(String[] args) 
 	{
+
 		ThermometerSystem thermometer = new ThermometerSystem();
 
 		thermometer.turnOnOff();
@@ -46,8 +48,18 @@ public class ThermometerSystem
 
 	}
 
+	 public void mainMenu()
+	{
+		//Alvaro 
+		
+		measureTemp();
+		convertTemp();
+		
+		
+	}
 
-	public float measureTemp()
+
+	public void measureTemp()
 	{
 		//Max temp 120; Min temp 95
 		//Kyle & Nea
@@ -79,9 +91,9 @@ public class ThermometerSystem
     */
 
         
-		float []tempReadings = {95.5f, 100.2f, 97.3f, 110.7f, 96.3f, 98.6f, 101.9f, 99.1f, 112.8f, 96.9f};
+		double []tempReadings = {95.5, 100.2, 97.3, 110.7, 96.3, 98.6, 101.9, 99.1, 112.8, 96.9};
 		
-        float sum = 0;
+        double sum = 0;
         for (int i=0; i<tempReadings.length; i++) 
         {
         	
@@ -90,27 +102,26 @@ public class ThermometerSystem
 
          //Used for makng sure we can iterate through the array
         System.out.println("Array: " + Arrays.toString(tempReadings));
-        float avgTemp = sum/tempReadings.length;
+        avgTemp = sum/tempReadings.length;
         //System.out.println("Your temperature is: " + avgTemp);
         DecimalFormat numFormat = new DecimalFormat("###.#");
         System.out.format(numFormat.format(avgTemp));
-	
-		return avgTemp;
 
-	}
-
-	public void mainMenu()
-	{
-		//Alvaro 
-		
-		measureTemp();
-		
-		
 	}
 
 	public void convertTemp()
 	{
 		//Kyle & Nea
+		
+	    if(tempUnits=='C')
+	    {
+	    	double celcius = ((avgTemp-32) * 5.0/9.0);
+
+	  
+	   	 	System.out.println();
+	    	DecimalFormat numFormat = new DecimalFormat("###.#");
+        	System.out.format(numFormat.format(celcius));
+	    }	
 	}
 
 	public void inactivityTimer()
@@ -188,6 +199,7 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
+
 		ThermometerSystem thermometer = new ThermometerSystem();
 		Thermometer getTempInfo = new Thermometer();
 
