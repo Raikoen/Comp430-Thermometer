@@ -1,15 +1,14 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+package src;
 
 public class Main
 {
-    public static void main(String[] args) throws IOException {
+  public static void main(String[] args)
+  {
+    TempLog tempLog = new TempLog();
+    tempLog.createLogFile();
+    ThermometerSystem thermometer = new ThermometerSystem();
+    thermometer.clearConsole();
+    thermometer.mainMenu();
 
-        ThermometerSystem thermometerSystem = new ThermometerSystem();
-        thermometerSystem.testFileReader();
-        thermometerSystem.clearConsole();
-        thermometerSystem.mainMenu();
-    }
+  }
 }

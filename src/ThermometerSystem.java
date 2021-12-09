@@ -1,7 +1,6 @@
-import java.io.*;
+package src;
+
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -11,21 +10,23 @@ public class ThermometerSystem {
   boolean isOn = false;
   double avgTemp;
   double feverTemp = 37.0;
-  boolean feverDetected;
   int batteryStat = 80;
   char tempUnits = 'C';
   TimerTask task;
   Timer timer;
+  TempLog tempLog = new TempLog();
+
 
   public void mainMenu() {
     int input = 0;
     in = new Scanner(System.in);
-    int timerRun = 0;
+    boolean timerRun = false;
     while (input >= 0) {
+      tempLog.getTemps();
       printScreen();
       if (isOn){
-        if (timerRun == 0) {
-          timerRun += 1;
+        if (!timerRun) {
+          timerRun = true;
         } else {
           timer.cancel();
         }
@@ -36,6 +37,7 @@ public class ThermometerSystem {
       System.out.println("| 1 C/F          |");
       System.out.println("| 2 set fever    |");
       System.out.println("| 3 measure temp |");
+      System.out.println("| 4 clear log    |");
       System.out.println("==================");
       System.out.print("Enter option: ");
       input = in.nextInt();
@@ -59,6 +61,7 @@ public class ThermometerSystem {
               System.out.println("==========");
               System.out.println("| 1 up   |");
               System.out.println("| 2 down |");
+              System.out.println("| 3 save |");
               System.out.println("| 3 save |");
               System.out.println("==========");
               System.out.print("Enter option: ");
@@ -85,6 +88,10 @@ public class ThermometerSystem {
             print_isOff_msg();
           }
           break;
+        case 4:
+          if(isOn){
+            tempLog.clearLog();
+          }
         default:
           break;
       }
@@ -113,56 +120,17 @@ public class ThermometerSystem {
     }
   }
 
-  public void measureTemp(){
-    Thermometer thermometer = new Thermometer();
+  public void measureTemp()
+  {
     //random generated list of temp
-    double []tempReadings = {203.9, 37.9, 36.3, 43.7, 35.7, 37, 38.8, 37.3, 44.9, 36.1};
+    double []tempReadings = {95.5, 100.2, 97.3, 110.7, 96.3, 98.6, 101.9, 99.1, 112.8, 96.9};
     double sum = 0;
     for (double tempReading : tempReadings) {
       sum += tempReading;
     }
     avgTemp = sum/tempReadings.length;
-
-      /*
-      feverCalc() cannot be its own method, or the if statement using avgTemp and feverTemp does
-      not yeild the correct results. It does result in the expecteed result when used this way,
-      so that's what Nea and Kyle have decided to do
-
-     */
-
-    if(avgTemp >= feverTemp) {
-      feverDetected = true;
-    }
-    if(feverDetected==true) {
-      System.out.println("Fever Detected");
-    }
-    else {
-      System.out.println("No Fever Detected");
-    }
-
-  }
-
-  public void testFileReader() throws IOException {
-    // File path is passed as parameter
-    File file = new File(
-            "TempReadingFiles/text_with_brackets.txt");
-
-    // Note:  Double backquote is to avoid compiler
-    // interpret words
-    // like \test as \t (ie. as a escape sequence)
-
-    // Creating an object of BufferedReader class
-    BufferedReader br
-            = new BufferedReader(new FileReader(file));
-
-    // Declaring a string variable
-    String st;
-    // Consition holds true till
-    // there is character in a string
-    while ((st = br.readLine()) != null)
-
-      // Print the string
-      System.out.println(st);
+    DecimalFormat df = new DecimalFormat("#.#");
+    tempLog.addTemp(Double.parseDouble(df.format(avgTemp)), tempUnits);
   }
 
   public void convertTemp() {

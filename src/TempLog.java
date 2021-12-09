@@ -1,10 +1,12 @@
+package src;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class TempLog {
-  String filename = "TempLog.txt";
+  String filename = "src/TempLog.txt";
   float[] logEntries;
 
   public TempLog(){

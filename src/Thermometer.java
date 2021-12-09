@@ -1,21 +1,11 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Random;
-import java.text.DecimalFormat;
-import java.math.RoundingMode;
+package src;
 
-
-public class Thermometer extends ThermometerSystem
+public class Thermometer
 {
   boolean testPassed;
   boolean feverDetected;
 
-  /*
-    This class is unused. The code we have runs without it...How should we impleeent this?
-    Also, with how things are now, Thermometer does nothing.
-
-     public void selfTest()
+  public void selfTest()
   {
     //Group effort
 
@@ -26,30 +16,34 @@ public class Thermometer extends ThermometerSystem
     if(testPassed==true)
     {
       System.out.println("Test passed");
-      ThermometerSystem thermometerSystem = new ThermometerSystem();
-      thermometerSystem.mainMenu();
+      ThermometerSystem thermometer = new ThermometerSystem();
+
+      thermometer.mainMenu();
     }
 
-  }
-   */
-
-
-  }
-
-/*public class Log
-{
-	//Alvaro
-
 		/*
-		float[] logEntries;
+			For simulating the battery life test, we could make
+			a random number generator that just spits out a
+			random number that can be tested in an if-else.
+			If the number generated is beneath a certain number,
+			then the system will have the "Low Battery" meassage
+			and will keep that message up for a few seconds before
+			calling the mainMenu() method
 
-		public addTemp(float entry);
-		public deleteTemp(float entry);
+			This is more to get brownie pts, neither Nea nor
+			myself (Kyle) think it is absolutely pertinent to
+			implement this
+		*/
 
-		These aren't declared properly, they're placeholders
+
+
+  }
+
+
+  public void feverCalc()
+  {
+    //Kyle & Nea
+  }
+
 
 }
-*/
-
-
-
