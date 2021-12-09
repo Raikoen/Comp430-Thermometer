@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,16 +12,19 @@ public class ThermometerSystem {
   char tempUnits = 'C';
   TimerTask task;
   Timer timer;
+  TempLog tempLog = new TempLog();
+
 
   public void mainMenu() {
     int input = 0;
     in = new Scanner(System.in);
-    int timerRun = 0;
+    boolean timerRun = false;
     while (input >= 0) {
+      tempLog.getTemps();
       printScreen();
       if (isOn){
-        if (timerRun == 0) {
-          timerRun += 1;
+        if (!timerRun) {
+          timerRun = true;
         } else {
           timer.cancel();
         }
@@ -33,6 +35,7 @@ public class ThermometerSystem {
       System.out.println("| 1 C/F          |");
       System.out.println("| 2 set fever    |");
       System.out.println("| 3 measure temp |");
+      System.out.println("| 4 clear log    |");
       System.out.println("==================");
       System.out.print("Enter option: ");
       input = in.nextInt();
@@ -56,6 +59,7 @@ public class ThermometerSystem {
               System.out.println("==========");
               System.out.println("| 1 up   |");
               System.out.println("| 2 down |");
+              System.out.println("| 3 save |");
               System.out.println("| 3 save |");
               System.out.println("==========");
               System.out.print("Enter option: ");
@@ -82,6 +86,10 @@ public class ThermometerSystem {
             print_isOff_msg();
           }
           break;
+        case 4:
+          if(isOn){
+            tempLog.clearLog();
+          }
         default:
           break;
       }
@@ -119,6 +127,8 @@ public class ThermometerSystem {
       sum += tempReading;
     }
     avgTemp = sum/tempReadings.length;
+    DecimalFormat df = new DecimalFormat("#.#");
+    tempLog.addTemp(Double.parseDouble(df.format(avgTemp)), tempUnits);
   }
 
   public void convertTemp() {

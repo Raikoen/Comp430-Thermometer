@@ -1,11 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Random;
-import java.text.DecimalFormat;
-import java.math.RoundingMode;
-
-
 public class Thermometer
 {
   boolean testPassed;
@@ -53,21 +45,3 @@ public class Thermometer
 
 
 }
-
-/*public class Log
-{
-	//Alvaro
-
-		/*
-		float[] logEntries;
-
-		public addTemp(float entry);
-		public deleteTemp(float entry);
-
-		These aren't declared properly, they're placeholders
-
-}
-*/
-
-
-
