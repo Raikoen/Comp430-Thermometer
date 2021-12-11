@@ -103,14 +103,12 @@ public class ThermometerSystem {
     task = new TimerTask() {
       public void run() {
         isOn = false;
-
         clearConsole();
         try {
           mainMenu();
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-        //in = new Scanner(System.in);
       }
     };
     timer = new Timer("Timer");
@@ -134,7 +132,7 @@ public class ThermometerSystem {
     double [][]tempReadings = {{37.1, 37.2, 37.1, 37.1, 37.1, 37.2, 37.1, 37.2, 37.1, 37.2},
                                {35.3, 35.3, 35.4, 35.3, 35.3, 35.4, 35.4, 35.4, 35.4, 35.3}};
     DecimalFormat df = new DecimalFormat("#");
-    int index = Integer.parseInt(String.valueOf(df.format(Math.random() * (1 - 0) + 0)));
+    int index = Integer.parseInt(String.valueOf(df.format(Math.random()*1)));
     double sum = 0;
     for (double Reading : tempReadings[index]) {
       sum += Reading;
