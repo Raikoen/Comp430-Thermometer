@@ -131,8 +131,8 @@ public class ThermometerSystem {
   public void measureTemp()
   {
     //random generated temps
-    double [][]tempReadings = {{35.2, 37.8, 36.3, 43.7, 35.6, 37, 38.5, 37.3, 44.9, 36.1},
-                               {35.3, 35.3, 35.8, 35.9, 35.2, 35.8, 35.7, 35.7, 35.7, 35.3}};
+    double [][]tempReadings = {{37.1, 37.2, 37.1, 37.1, 37.1, 37.2, 37.1, 37.2, 37.1, 37.2},
+                               {35.3, 35.3, 35.4, 35.3, 35.3, 35.4, 35.4, 35.4, 35.4, 35.3}};
     DecimalFormat df = new DecimalFormat("#");
     int index = Integer.parseInt(String.valueOf(df.format(Math.random() * (1 - 0) + 0)));
     double sum = 0;
