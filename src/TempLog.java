@@ -1,13 +1,13 @@
 package src;
 
 import java.io.*;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class TempLog {
   String filename = "src/TempLog.txt";
-  float[] logEntries;
 
   public TempLog(){
 
@@ -15,9 +15,9 @@ public class TempLog {
 
   public void createLogFile(){
     File f = new File(filename);
-
   }
-  public void addTemp(double entry, char units) {
+  public void addTemp(double entry, char units){
+    createLogFile();
     try {
       FileWriter myWriter = new FileWriter(filename, true);
       myWriter.write(" " + String.valueOf(entry) + units);

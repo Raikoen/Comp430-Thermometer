@@ -1,11 +1,12 @@
 package src;
-
+import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ThermometerSystem {
+  Thermometer thermometer = new Thermometer();
   Scanner in = new Scanner(System.in);
   boolean isOn = false;
   double avgTemp;
@@ -17,7 +18,7 @@ public class ThermometerSystem {
   TempLog tempLog = new TempLog();
 
 
-  public void mainMenu() {
+  public void mainMenu() throws InterruptedException {
     int input = 0;
     in = new Scanner(System.in);
     boolean timerRun = false;
@@ -102,34 +103,47 @@ public class ThermometerSystem {
     task = new TimerTask() {
       public void run() {
         isOn = false;
+
         clearConsole();
-        mainMenu();
+        try {
+          mainMenu();
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
         //in = new Scanner(System.in);
       }
     };
     timer = new Timer("Timer");
-    int delay = 5000000; // msx1000=sec
+    int delay = 30000; // msx1000=sec
     timer.schedule(task, delay);
+
   }
 
-  public void turnOnOff() {
+  public void turnOnOff() throws InterruptedException {
     if(isOn){
       isOn = false;
     } else{
+      thermometer.selfTest();
       isOn = true;
     }
   }
 
   public void measureTemp()
   {
-    //random generated list of temp
-    double []tempReadings = {95.5, 100.2, 97.3, 110.7, 96.3, 98.6, 101.9, 99.1, 112.8, 96.9};
+    //random generated temps
+    double [][]tempReadings = {{35.2, 37.8, 36.3, 43.7, 35.6, 37, 38.5, 37.3, 44.9, 36.1},
+                               {35.3, 35.3, 35.8, 35.9, 35.2, 35.8, 35.7, 35.7, 35.7, 35.3}};
+    DecimalFormat df = new DecimalFormat("#");
+    int index = Integer.parseInt(String.valueOf(df.format(Math.random() * (1 - 0) + 0)));
     double sum = 0;
-    for (double tempReading : tempReadings) {
-      sum += tempReading;
+    for (double Reading : tempReadings[index]) {
+      sum += Reading;
     }
-    avgTemp = sum/tempReadings.length;
-    DecimalFormat df = new DecimalFormat("#.#");
+    avgTemp = sum/tempReadings[index].length;
+    if(avgTemp >= feverTemp) {
+      Toolkit.getDefaultToolkit().beep();
+    }
+    df = new DecimalFormat("#.#");
     tempLog.addTemp(Double.parseDouble(df.format(avgTemp)), tempUnits);
   }
 
