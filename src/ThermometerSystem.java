@@ -1,5 +1,4 @@
 package src;
-import java.awt.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.Timer;
@@ -113,7 +112,7 @@ public class ThermometerSystem {
       }
     };
     timer = new Timer("Timer");
-    int delay = 30000; // msx1000=sec
+    int delay = 30000;
     timer.schedule(task, delay);
 
   }
@@ -138,9 +137,7 @@ public class ThermometerSystem {
       sum += Reading;
     }
     avgTemp = sum/tempReadings[index].length;
-    if(avgTemp >= feverTemp) {
-      thermometer.beep(1);
-    }
+    thermometer.feverCalc(avgTemp, feverTemp);
     df = new DecimalFormat("#.#");
     tempLog.addTemp(Double.parseDouble(df.format(avgTemp)), tempUnits);
   }

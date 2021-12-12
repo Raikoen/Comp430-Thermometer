@@ -1,7 +1,6 @@
 package src;
 
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 public class Thermometer
 {
@@ -10,6 +9,13 @@ public class Thermometer
       beep(2);
     }
   }
+
+  public void feverCalc(double avgTemp, double feverTemp) throws InterruptedException {
+    if(avgTemp >= feverTemp) {
+      beep(1);
+    }
+  }
+
   public void beep(int numBeeps) throws InterruptedException {
     Toolkit play = Toolkit.getDefaultToolkit();
     play.beep();

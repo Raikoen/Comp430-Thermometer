@@ -1,7 +1,6 @@
 package src;
 
 import java.io.*;
-import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +8,7 @@ import java.util.Scanner;
 public class TempLog {
   String filename = "src/TempLog.txt";
 
-  public TempLog(){
-
-  }
+  public TempLog(){}
 
   public void createLogFile(){
     File f = new File(filename);
@@ -35,7 +32,6 @@ public class TempLog {
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         logContent += data;
-        //System.out.println(data);
       }
       List<String> content = Arrays.asList(logContent.split(" "));
       if (content.size() == 0){
@@ -77,7 +73,6 @@ public class TempLog {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
-
   }
 
   public void clearLog(){
