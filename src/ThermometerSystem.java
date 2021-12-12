@@ -69,8 +69,10 @@ public class ThermometerSystem {
               switch (input2) {
                 case 1:
                   feverTemp = feverTemp + 0.5;
+                  break;
                 case 2:
                   feverTemp = feverTemp - 0.5;
+                  break;
                 default:
                   break;
               }
