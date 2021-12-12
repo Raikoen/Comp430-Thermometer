@@ -43,24 +43,24 @@ public class TempLog {
         System.out.println("| log is empty |");
         System.out.println("++++++++++++++++");
       }else if (content.size() < 10){
-        System.out.println("++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++");
         System.out.println("| log entries");
         System.out.print("|");
         int i;
         for (i = 0; i < content.size(); i++){
           System.out.print(content.get(i) + " ");
-          if (i == 4){
+          if (i == content.size()/2){
             System.out.println();
             System.out.print("|");
           }
         }
         System.out.println("");
-        System.out.println("++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++");
       } else {
-        System.out.println("++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++");
         System.out.println("| last 10 log entries");
-        System.out.print("| ");
         String[] last10 = content.subList(content.size() - 10, content.size()).toArray(new String[0]);
+        System.out.print("| ");
         int i;
         for (i = 0; i < last10.length; i++){
           System.out.print(last10[i] + " ");
@@ -70,7 +70,7 @@ public class TempLog {
           }
         }
         System.out.println("");
-        System.out.println("++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++");
       }
       myReader.close();
     } catch (FileNotFoundException e) {

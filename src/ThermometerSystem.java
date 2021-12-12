@@ -63,7 +63,6 @@ public class ThermometerSystem {
               System.out.println("| 1 up   |");
               System.out.println("| 2 down |");
               System.out.println("| 3 save |");
-              System.out.println("| 3 save |");
               System.out.println("==========");
               System.out.print("Enter option: ");
               input2 = in.nextInt();
@@ -92,6 +91,8 @@ public class ThermometerSystem {
         case 4:
           if(isOn){
             tempLog.clearLog();
+          }else{
+            print_isOff_msg();
           }
         default:
           break;
@@ -121,13 +122,12 @@ public class ThermometerSystem {
     if(isOn){
       isOn = false;
     } else{
-      thermometer.selfTest();
+      thermometer.selfTest(batteryStat);
       isOn = true;
     }
   }
 
-  public void measureTemp()
-  {
+  public void measureTemp() throws InterruptedException {
     //random generated temps
     double [][]tempReadings = {{37.1, 37.2, 37.1, 37.1, 37.1, 37.2, 37.1, 37.2, 37.1, 37.2},
                                {35.3, 35.3, 35.4, 35.3, 35.3, 35.4, 35.4, 35.4, 35.4, 35.3}};
@@ -139,7 +139,7 @@ public class ThermometerSystem {
     }
     avgTemp = sum/tempReadings[index].length;
     if(avgTemp >= feverTemp) {
-      Toolkit.getDefaultToolkit().beep();
+      thermometer.beep(1);
     }
     df = new DecimalFormat("#.#");
     tempLog.addTemp(Double.parseDouble(df.format(avgTemp)), tempUnits);
