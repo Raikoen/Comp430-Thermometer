@@ -116,7 +116,6 @@ public class ThermometerSystem {
     timer = new Timer("Timer");
     int delay = 30000;
     timer.schedule(task, delay);
-
   }
 
   public void turnOnOff() throws InterruptedException {
@@ -172,29 +171,28 @@ public class ThermometerSystem {
   }
 
   public void printScreen(){
-    int screenWidth = 29;
-    System.out.println("-----------------------------");
-    String line0 = "| Thermometer is ";
-    if(isOn){
-      line0 = line0 + "On";
-    } else {
-      line0 = line0 + "Off";
+    int screenWidth = 23;
+    System.out.println("-----------------------");
+    if(!isOn){
+      System.out.println("|                     |");
+      System.out.println("|                     |");
     }
-    DecimalFormat df = new DecimalFormat("#.#");
-    String[] lines = {line0, "| Battery: " + batteryStat + "% ",
-      "| fever: " + df.format(feverTemp) + " temp: " +
-        df.format(avgTemp) + " " + tempUnits};
-    int i;
-    for (i = 0; i < lines.length; i++) {
-      int len = lines[i].length();
-      int dif = screenWidth - len - 1;
-      int x;
-      for (x = 0; x < dif; x++) {
-        lines[i] = lines[i] + " ";
+    else {
+      DecimalFormat df = new DecimalFormat("#.#");
+      String[] lines = {"| Battery: " + batteryStat + "% ",
+        "| fever: " + df.format(feverTemp) + " temp: " +
+          df.format(avgTemp) + " " + tempUnits};
+      for (int i = 0; i < lines.length; i++) {
+        int len = lines[i].length();
+        int dif = screenWidth - len - 1;
+        int x;
+        for (x = 0; x < dif; x++) {
+          lines[i] = lines[i] + " ";
+        }
+        lines[i] = lines[i] + "|";
+        System.out.println(lines[i]);
       }
-      lines[i] = lines[i] + "|";
-      System.out.println(lines[i]);
     }
-    System.out.println("-----------------------------");
+    System.out.println("-----------------------");
   }
 }

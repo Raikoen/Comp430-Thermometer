@@ -1,6 +1,8 @@
 package src;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Thermometer
 {
