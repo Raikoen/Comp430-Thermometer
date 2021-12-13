@@ -50,7 +50,7 @@ public class ThermometerSystem {
           if(isOn) {
             convertTemp();
           }else{
-            print_isOff_msg();
+            printIsOffMsg();
           }
           break;
         case 2:
@@ -78,7 +78,7 @@ public class ThermometerSystem {
               }
             }
           } else {
-            print_isOff_msg();
+            printIsOffMsg();
           }
           break;
         case 3:
@@ -86,14 +86,14 @@ public class ThermometerSystem {
             printScreen();
             measureTemp();
           }else{
-            print_isOff_msg();
+            printIsOffMsg();
           }
           break;
         case 4:
           if(isOn){
             tempLog.clearLog();
           }else{
-            print_isOff_msg();
+            printIsOffMsg();
           }
         default:
           break;
@@ -164,7 +164,7 @@ public class ThermometerSystem {
     }
   }
 
-  public void print_isOff_msg(){
+  public void printIsOffMsg(){
     System.out.println("************************************");
     System.out.println("* Turn thermometer on before using *");
     System.out.println("************************************");
