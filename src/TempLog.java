@@ -14,7 +14,7 @@ public class TempLog {
     File f = new File(filename);
   }
   public void addTemp(double entry, char units){
-    createLogFile();
+    //createLogFile();
     try {
       FileWriter myWriter = new FileWriter(filename, true);
       myWriter.write(" " + String.valueOf(entry) + units);
