@@ -171,11 +171,11 @@ public class ThermometerSystem {
   }
 
   public void printScreen(){
-    int screenWidth = 23;
-    System.out.println("-----------------------");
+    int screenWidth = 26;
+    System.out.println("--------------------------");
     if(!isOn){
-      System.out.println("|                     |");
-      System.out.println("|                     |");
+      System.out.println("|                        |");
+      System.out.println("|                        |");
     }
     else {
       DecimalFormat df = new DecimalFormat("#.#");
@@ -193,6 +193,6 @@ public class ThermometerSystem {
         System.out.println(lines[i]);
       }
     }
-    System.out.println("-----------------------");
+    System.out.println("--------------------------");
   }
 }
